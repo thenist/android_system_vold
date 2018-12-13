@@ -19,7 +19,6 @@
 
 #include "KeyBuffer.h"
 #include "KeyStorage.h"
-#include "Keymaster.h"
 
 #include <string>
 #include <memory>
@@ -32,9 +31,10 @@ bool installKey(const KeyBuffer& key, std::string* raw_ref);
 bool evictKey(const std::string& raw_ref);
 bool retrieveAndInstallKey(bool create_if_absent, const KeyAuthentication& key_authentication,
                            const std::string& key_path, const std::string& tmp_path,
-                           std::string* key_ref, bool wrapped_key_supported);
+                           std::string* key_ref);
 bool retrieveKey(bool create_if_absent, const std::string& key_path,
                  const std::string& tmp_path, KeyBuffer* key);
+
 }  // namespace vold
 }  // namespace android
 
