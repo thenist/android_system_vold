@@ -775,6 +775,7 @@ static int get_crypt_ftr_info(char** metadata_fname, off64_t* off) {
         get_crypt_info(&key_loc, &real_blkdev);
 
         if (key_loc == KEY_IN_FOOTER) {
+            SLOGI("Key In footer Confirmed.\n");
             if (android::vold::GetBlockDevSize(real_blkdev, &cached_off) == android::OK) {
                 /* If it's an encrypted Android partition, the last 16 Kbytes contain the
                  * encryption info footer and key, and plenty of bytes to spare for future
@@ -787,6 +788,7 @@ static int get_crypt_ftr_info(char** metadata_fname, off64_t* off) {
                 SLOGE("Cannot get size of block device %s\n", real_blkdev.c_str());
             }
         } else {
+            SLOGI("Key NOT in footer Confirmed.\n");
             strlcpy(cached_metadata_fname, key_loc.c_str(), sizeof(cached_metadata_fname));
             cached_off = 0;
             cached_data = 1;
